@@ -1,0 +1,23 @@
+.Searchbox{
+    margin-left: 450px;
+    margin-top: 40px;
+}
+.credentials
+{
+    border-style:solid;
+    border-width:thin;
+    border-color:#ff5328;
+}
+.Button{
+    width: 10px;
+    height: 40px;
+    background-color: #A9A9A9;
+}
+.VideoList{
+    margin-top:50px;
+    margin-right:30px;
+}
+.VideoDetail{
+    margin-top:50px;
+    margin-left:35px;
+}

@@ -1,0 +1,13 @@
+.main{
+    margin-top: 50px;
+    margin-left: 300px
+}
+.credentials
+{
+    border-style:solid;
+    border-width:thin;
+    border-color:#ff5328;
+}
+.image{
+    border: none;
+}
