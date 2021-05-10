@@ -2,17 +2,22 @@ import React , { Component } from 'react';
 import { connect } from 'react-redux';
 import CustomerDrawer from '../SideDrawer/SideDrawers/CustomerDrawer';
 import AdminDrawer from '../SideDrawer/SideDrawers/AdminDrawer';
+import AuthDrawer from '../SideDrawer/SideDrawers/AuthDrawer';
 import { withRouter } from 'react-router-dom';
 
 class SideDrawers extends Component{
     render(){
-        console.log(this.props)
         let form = null;
-        if(this.props.isAuthenticated){
-            if(this.props.account === "Customer")
+        if(this.props.isAuthenticated === true){
+            if(this.props.account === "Customer"){
                 form = <CustomerDrawer/>
-            else 
+            }
+            else if(this.props.account === "Admin"){
                 form = <AdminDrawer/>
+            }
+        }
+        else if(this.props.isAuthenticated === false){
+            form = <AuthDrawer/>
         }
         
         return (

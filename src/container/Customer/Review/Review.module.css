@@ -1,0 +1,21 @@
+.main{
+    margin-left:400px;
+    margin-top:75px;
+}
+.heading{
+    margin-left:150px;
+    margin-bottom: 50px;
+}
+.input{
+    width: 18px;
+    height: 20px;
+}
+.credentials{
+    border-style:solid;
+    border-width:thin;
+    border-color:#ff5328;
+}
+.rating{
+    width: 50px;
+    height: 40px;
+}

@@ -1,14 +1,15 @@
 import React , { Component } from 'react';
 import Aux from '../../hoc/Auxi';
-import { Link } from 'react-router-dom';
+import ProductCatalogue from '../ProductCatalogue/ProductCatalogue';
 
 class Customer extends Component{
 
     render(){
+        let form= <ProductCatalogue/>
         console.log(this.props)
         return(
             <Aux>
-                <div>In Customer component</div>
+                <div>{form}</div>     
             </Aux>
         )
     }

@@ -92,14 +92,14 @@ class Login extends Component{
         <div className="uk-margin uk-margin-small-left">
             <label className="uk-form-label uk-text-emphasis uk-text-large">Username</label>
             <div className="uk-form-controls uk-width-medium" >
-                <input className={["uk-input",classes.credentials].join(" ")} uk-tooltip="title:Email;pos:top-right" name="username" type="text" placeholder="Enter Username" value={this.state.username} onChange={(event) => this.inputChangedHandler(event , "username")} />
+                <input className={["uk-input",classes.credentials].join(" ")} uk-tooltip="title:Email;pos:top-right" name="username" type="text" placeholder="Enter Username" onChange={(event) => this.inputChangedHandler(event , "username")} />
             </div>
         </div>
 
         <div className="uk-margin uk-margin-small-left">
                 <label className="uk-form-label uk-text-emphasis uk-text-large">Password</label>
                 <div className="uk-form-controls uk-width-medium" >
-                    <input className={["uk-input",classes.credentials].join(" ")} type="password" name="password" placeholder="Enter the password" value={this.state.password} onChange={(event) => this.inputChangedHandler(event, "password")} />
+                    <input className={["uk-input",classes.credentials].join(" ")} type="password" name="password" placeholder="Enter the password" onChange={(event) => this.inputChangedHandler(event, "password")} />
                 </div>
         </div>
 

@@ -1,14 +1,13 @@
 import React , { Component } from 'react';
-import classes from './ProductAddition.module.css';
+import classes from './EditProduct.module.css';
+import { connect } from 'react-redux';
 import { updateObject , checkValidity } from '../../../shared/utility'
 import * as UIkit from 'uikit';
-import { connect } from 'react-redux';
 import Aux from '../../../hoc/Auxi';
 import * as actions from '../../../store/actions/index';
 
+class EditProduct extends Component{
 
-class ProductAddition extends Component{
-    
     state = {
         controls:{
             name: {
@@ -25,11 +24,6 @@ class ProductAddition extends Component{
                 },
                 valid: false
             },
-            category:{
-                value: 'selectoption',
-                validation:true,
-                valid:true
-            },
             cc:{
                 value: '',
                 validation: {
@@ -43,26 +37,14 @@ class ProductAddition extends Component{
                     required: true
                 },
                 valid: false
-            },
-            image:{
-                value:'',
-                validation:{
-                    
-                },
-                valid:true
-           }
-                
             }
+        }
         ,
         formisValid: false
     }
 
     inputChangedHandler = (event , controlName) => {
-        let updatedValue = null
-        if(controlName === "image")
-            updatedValue = event.target.files[0]
-        else
-            updatedValue = event.target.value
+        let updatedValue = event.target.value
   
             const updatedControls = updateObject(this.state.controls , {
                 [controlName] : updateObject(this.state.controls[controlName] , {
@@ -71,9 +53,9 @@ class ProductAddition extends Component{
                 })
             })
 
-            let formisValid = true;
+            let formisValid = false;
             for (let inputIdentifier in updatedControls){
-                formisValid = updatedControls[inputIdentifier].valid & formisValid
+                formisValid = updatedControls[inputIdentifier].valid | formisValid
             }
             this.setState({controls: updatedControls , formisValid : formisValid})
     }
@@ -82,8 +64,7 @@ class ProductAddition extends Component{
 
     submitHandler = () => {
         if(this.state.formisValid){
-            this.props.addProduct(this.state.controls.name.value , this.state.controls.desc.value , this.state.controls.category.value, this.state.controls.image.value , this.state.controls.cc.value , this.state.controls.link.value , (res)=> {
-                console.log(res);
+            this.props.editProduct(localStorage.getItem("id"),this.state.controls.name.value , this.state.controls.desc.value , this.state.controls.cc.value , this.state.controls.link.value , (res)=> {
 
                 if(res.success === 'true'){
                         UIkit.notification({
@@ -102,14 +83,13 @@ class ProductAddition extends Component{
             })
         }
     }
-
+   
     render(){
-
-        return (
-        <Aux>
-        <div className={classes.main}>
+        return(
+            <Aux>
+            <div className={classes.main}>
             <div id="heading">
-                <legend className="uk-legend uk-margin-medium-left uk-margin-medium-bottom uk-text-center uk-width-1-4"><u>Product Addition</u></legend>
+                <legend className="uk-legend uk-margin-medium-left uk-margin-medium-bottom uk-text-center uk-width-1-4">Edit Product Detail</legend>
             </div>
     
             <div className="uk-margin uk-margin-small-left">
@@ -123,26 +103,6 @@ class ProductAddition extends Component{
                 <label className="uk-form-label uk-text-emphasis uk-text-large">Description</label>
                 <div className="uk-form-controls uk-width-large" >
                     <textarea className={["uk-input",classes.credentials].join(" ")} placeholder="Enter the description of product" onChange={(event) => this.inputChangedHandler(event, "desc")} />
-                </div>
-            </div>
-
-            <div className="uk-margin uk-margin-small-left">
-                <label className="uk-form-label uk-text-emphasis uk-text-large">Category</label>
-                <div className="uk-form-controls uk-width-medium">
-                    <select className={["uk-input",classes.credentials].join(" ")} onChange={( event ) => {this.inputChangedHandler(event ,"category" )} }>
-                        <option disabled value="selectoption">Select category</option>
-                        <option value="Accessories">Accessories</option>
-                        <option value="Electronic">Electronic</option>
-                        <option value="Apparel">Apparel</option>
-                        <option value="Sports">Sports</option>
-                    </select>
-                </div>
-            </div>
-
-            <div className="uk-margin uk-margin-small-left">
-                <label className="uk-form-label uk-text-emphasis uk-text-large">Image</label>
-                <div className="uk-form-controls uk-width-medium" >
-                    <input className={["uk-input" , classes.image ].join(" ")} type="file" placeholder="Choose image" onChange={(event) => this.inputChangedHandler(event, "image")} />
                 </div>
             </div>
 
@@ -161,18 +121,18 @@ class ProductAddition extends Component{
             </div>
 
             <div className="uk-child-width-1-3 uk-margin-small-left uk-margin-medium-top">
-                <button className="uk-button uk-button-large uk-button-primary" uk-tooltip="title:Add;pos:top-right" type="button" onClick={this.submitHandler}>Add Product</button>
+                <button className="uk-button uk-button-large uk-button-primary" uk-tooltip="title:Edit;pos:top-right" type="button" onClick={this.submitHandler}>Edit Product</button>
             </div>
         </div>
-        </Aux>
+            </Aux>
         )
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return {
-        addProduct: (name , desc ,category , image , cc , link , callback) => dispatch(actions.addProduct(name , desc , category , image , cc , link , callback))
+        editProduct: (id , name , desc , cc , link , callback ) => dispatch(actions.editProduct(id , name , desc , cc , link , callback))
     }
 }
 
-export default connect(null , mapDispatchToProps )(ProductAddition);
+export default connect(null , mapDispatchToProps)(EditProduct)

@@ -7,7 +7,6 @@ import { withRouter } from 'react-router-dom';
 class Layout extends Component {
 
     render(){
-        console.log(this.props)
         return(
         <Aux>
            <div className={classes.top}>

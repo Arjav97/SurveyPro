@@ -1,0 +1,28 @@
+.credentials{   
+    border-style:solid;
+    border-width:thin;
+    border-color:#ff5328;
+}
+.Button{
+    width: 10px;
+    height: 40px;
+    background-color: #A9A9A9;
+    }
+.controls{
+    margin-left:260px;
+    margin-top: 50px;
+    margin-bottom: 75px;
+}
+.noborder{
+    border-color:none;
+    border-style: none;
+}
+.main
+{
+    margin-left:50px;
+}
+.productlist{
+    margin-left:20px;
+    margin-right:70px;
+    margin-bottom:80px;
+}

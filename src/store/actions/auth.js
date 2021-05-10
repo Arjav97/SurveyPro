@@ -67,6 +67,7 @@ export const authLogin = (username , password , callback) => {
                 dispatch(authSuccess(response.data.doc._id , response.data.doc.account , false))
                 localStorage.setItem("username" , response.data.doc._id)
                 localStorage.setItem("Account" , response.data.doc.account)
+                localStorage.setItem("isAuthenticated",true)
         }
         callback(response.data)
     })
@@ -85,10 +86,18 @@ export const authFail = (error) => {
 }
 
 export const authLogout = (callback) => {
-    localStorage.removeItem('username')
-    localStorage.removeItem('Account')
-    callback()
-    return {
-        type: actionTypes.AUTH_LOGOUT
+    return dispatch => {
+        localStorage.removeItem('username')
+        localStorage.removeItem('Account')
+        localStorage.removeItem('id')
+        localStorage.setItem('isAuthenticated',false)
+        callback()
+        dispatch({
+            type: actionTypes.AUTH_LOGOUT
+        })
+        dispatch({
+            type: actionTypes.SET_AFTER_LOGOUT
+        })
     }
+    
 }

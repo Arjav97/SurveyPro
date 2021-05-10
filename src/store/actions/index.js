@@ -4,5 +4,14 @@ export {
     authLogout
 } from './auth'
 export{
-    addProduct
+    addProduct,
+    searchProduct,
+    getProduct,
+    saveProduct,
+    getsavedProduct,
+    editProduct,
+    saveReview,
+    deleteProduct,
+    unSaveProduct,
+    getReward
 } from './product'

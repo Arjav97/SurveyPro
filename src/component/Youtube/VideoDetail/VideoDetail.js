@@ -11,7 +11,7 @@ const VideoDetail = (props) => {
 
     return (
         <div className="uk-grid uk-child-width-1-1">
-            <div><iframe height="400" width="850" allowFullScreen={true} src={url} /></div>
+            <div><iframe title={props.video.etag} height="400" width="850" allowFullScreen={true} src={url} /></div>
             <div className="uk-margin-medium-top"><h3>{props.video.snippet.title}</h3></div>
             <div className="uk-margin-small-top"><h7>{props.video.snippet.description}</h7></div>
         </div>        

@@ -9,9 +9,11 @@ import { Provider } from 'react-redux';
 import { createStore , applyMiddleware , combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import authReducer from './store/reducers/auth';
+import productReducer from './store/reducers/product';
 
 const rootReducer = combineReducers({
-    auth: authReducer
+    auth: authReducer,
+    products: productReducer
 })
 
 const store = createStore(rootReducer , applyMiddleware(thunk));
